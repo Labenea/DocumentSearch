@@ -45,7 +45,7 @@ def generate(k):
     keyword = list(filter(None, keyword))
     # ERROR IF INPUT IS EMPTY STRING
     if not keyword:
-        return "keyword tidak valid"
+        return False
     else:
         # CREATE NFA
         state, symbol, delta, start_state, final_state = create_NFA(keyword)

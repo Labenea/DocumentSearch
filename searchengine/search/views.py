@@ -15,8 +15,13 @@ def index(request):
         result = []
         keys = request.GET['keywords']
         jumlah = request.GET['jumlah'].split('-')
-        state, symbol, delta, start_state, final_state = main(
-            keys)
+        temp = main(keys)
+        if(temp != False):
+            state, symbol, delta, start_state, final_state = main(keys)
+        else:
+            context = {
+                'error': "Keyword yang anda masukan salah "}
+            return render(request, 'search/index.html', context)
         list_text = sorted(glob.glob('docs/*.txt'),
                            key=lambda name: int(name[8:-4]))
         if(len(jumlah) == 1):
@@ -50,8 +55,8 @@ def index(request):
             jumlah = "-".join(jumlah)
         if(len(result) != 0):
             page_num = request.GET.get('page', 1)
-            paginator = Paginator(result, 5)
-            page = paginator.page(page_num)
+            paginator = Paginator(result, 5, allow_empty_first_page=True)
+            page = paginator.get_page(page_num)
             context = {'data': page,
                        'keyword': request.GET['keywords'], 'jumlah': jumlah}
         else:

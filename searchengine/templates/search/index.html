@@ -50,6 +50,7 @@
           </div>
         <div class="col-auto">
           <ul class="pagination">
+          {% if data.paginator.num_pages != 1 %}
             {% if data.has_previous %}
               <li class="page-item">
                 <a href="{% url 'search:index' %}?keywords={{keyword}}&page=1&jumlah={{jumlah}}" class="page-link">First Page</a>
@@ -94,6 +95,7 @@
               </li>
             {% endif %}
           </ul>
+          {% endif %}
         </div>
     </div>
      
