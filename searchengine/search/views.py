@@ -14,6 +14,7 @@ def index(request):
     if request.GET:
         result = []
         keys = request.GET['keywords']
+        print("Keyword : "+(keys))
         jumlah = request.GET['jumlah'].split('-')
         temp = main(keys)
         if(temp != False):
@@ -64,6 +65,7 @@ def index(request):
                 'error': "Tidak ditemukan document dengan keyword : "+keys}
         context['rtime'] = 'About %d results (%.2fms)' % (
             len(result), time.time() - startT)
+        print("Runtime :" + str(time.time() - startT))
         return render(request, 'search/index.html', context)
     else:
         return render(request, 'search/index.html')

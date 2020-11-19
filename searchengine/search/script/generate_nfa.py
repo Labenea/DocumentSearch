@@ -49,13 +49,9 @@ def generate(k):
     else:
         # CREATE NFA
         state, symbol, delta, start_state, final_state = create_NFA(keyword)
-
+        print("State :" + str(state))
+        print("Symbol :" + str(symbol))
+        print("Delta :"+str(delta))
+        print("Start State :" + str(start_state))
+        print("Final State :"+str(final_state))
     return state, symbol, delta, start_state, final_state
-
-
-"""         print(state)
-        print(symbol)
-        print(delta)
-        print(start_state)
-        print(final_state)
- """
